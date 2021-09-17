@@ -13,9 +13,9 @@ jobs:
           name: install dependencies
           command: >
             python3 -m venv devops
-            chown -R circleci:circleci devops
+            sudo chmod +x devops
             . devops/bin/activate
-            chmod +x devops/bin/activate
+            sudo chmod +x devops/bin/activate
             source devops/bin/activate
             make install
             # Install hadolint
