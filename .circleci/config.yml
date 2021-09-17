@@ -13,6 +13,8 @@ jobs:
           name: install dependencies
           command: >
             python3 -m venv .venv
+            mkdir .venv/bin
+            mkdir .venv/bin/activate
             source .venv/bin/activate
             make install
             # Install hadolint
