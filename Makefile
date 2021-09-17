@@ -22,8 +22,7 @@ install:
 	curl -LO https://dl.k8s.io/release/v1.22.1/bin/linux/amd64/kubectl
 	install kubectl ~/.devops/bin/kubectl
 	chmod +x ~/.devops/bin/kubectl
-	minikube start
-
+	
 test:
 	# Additional, optional, tests could go here
 	#python -m pytest -vv --cov=myrepolib tests/*.py
