@@ -14,7 +14,7 @@ jobs:
           command: |
             python3 -m venv devops
             chmod +x devops
-            mkdir -p devops/bin/activate
+            mkdir devops/bin
             chmod +x devops/bin/activate
             source devops/bin/activate
             make install
