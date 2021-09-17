@@ -1,7 +1,6 @@
 version: 2.1
 jobs:
   build-project:
-    working_directory: ~/
     docker:
       - image: python:3.7.3-stretch
     steps:
