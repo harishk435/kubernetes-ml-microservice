@@ -1,14 +1,14 @@
 version: 2
 jobs:
-  build:
+  build-project:
     working_directory: ~/project
     docker:
-      - image: 'python:3.7.3-stretch'
+      - image: python:3.7.3-stretch
     steps:
       - checkout
       - restore_cache:
           keys:
-            - 'v1-dependencies-{{ checksum "requirements.txt" }}'
+            - v1-dependencies-{{ checksum "requirements.txt" }}
             - v1-dependencies-
       - run:
           name: install dependencies
@@ -20,12 +20,17 @@ jobs:
             wget -O ~/project/.venv/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
             chmod +x ~/project/.venv/bin/hadolint
       - save_cache:
-          key: 'v1-dependencies-{{ checksum "requirements.txt" }}'
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
           paths:
             - ~/project/.venv
         
       - run:
-        name: run lint
-        command: |
-          ~/project/.venv/bin/activate
-          make lint
+          name: run lint
+          command: |
+            ~/project/.venv/bin/activate
+            make lint
+          
+workflows:
+  default:
+    jobs:
+      - build-project
