@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   build-project:
+    working_directory: ~/
     docker:
       - image: python:3.7.3-stretch
     steps:
@@ -11,15 +12,15 @@ jobs:
             - v1-dependencies-
       - run:
           name: install dependencies
-          command: >
-            python3 -m venv devops
+          command: |
+            sudo python3 -m venv devops
             sudo chmod +x devops
-            . devops/bin/activate
+            sudo mkdir -p devops/bin/activate
             sudo chmod +x devops/bin/activate
             source devops/bin/activate
             make install
             # Install hadolint
-            wget -O devops/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
+            sudo wget -O devops/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
             chmod +x devops/bin/hadolint
       - save_cache:
           key: v1-dependencies-{{ checksum "requirements.txt" }}
