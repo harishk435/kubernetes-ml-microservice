@@ -11,7 +11,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: install dependencies
-          command: >
+          command: |
             python3 -m venv venv
             chmod +x venv
             echo "created venv"
@@ -20,9 +20,11 @@ jobs:
             source venv/bin/activate
             echo "Activated"
             make install
+            pip install --upgrade pip &&\
+		          pip install -r requirements.txt
             echo "Installing hadolint"
-            wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
-            chmod +x /bin/hadolint
+            wget -O venv/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
+              chmod +x venv/bin/hadolint
             echo "Installed hadolint"
       - save_cache:
           key: v1-dependencies-{{ checksum "requirements.txt" }}
@@ -32,7 +34,7 @@ jobs:
       - run:
           name: run lint
           command: |
-            echo "Runt lint"
+            echo "Run lint"
             . venv/bin/activate
             make lint
           
