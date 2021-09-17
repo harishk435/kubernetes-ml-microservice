@@ -29,7 +29,7 @@ jobs:
           name: run lint
           command: |
             echo "Run lint"
-            ~/.devops/bin/activate
+            # ~/.devops/bin/activate
             make lint
           
 workflows:
