@@ -17,11 +17,11 @@ install:
 	wget -O ~/.devops/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 &&\
 		chmod +x ~/.devops/bin/hadolint
 	curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-	sudo install minikube-linux-amd64 ~/.devops/bin/minikube
-	sudo chmod +x ~/.devops/bin/minikube
+	install minikube-linux-amd64 ~/.devops/bin/minikube
+	chmod +x ~/.devops/bin/minikube
 	curl -LO https://dl.k8s.io/release/v1.22.1/bin/linux/amd64/kubectl
-	sudo install kubectl ~/.devops/bin/kubectl
-	sudo chmod +x ~/.devops/bin/kubectl
+	install kubectl ~/.devops/bin/kubectl
+	chmod +x ~/.devops/bin/kubectl
 	minikube start
 
 test:
